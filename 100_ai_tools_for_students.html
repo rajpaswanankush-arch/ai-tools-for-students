@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>100 AI Tools for Students</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #13131a;
+    --surface2: #1c1c27;
+    --border: rgba(255,255,255,0.07);
+    --border-hover: rgba(255,255,255,0.18);
+    --text: #f0f0f5;
+    --muted: #8888a0;
+    --accent: #7c6fff;
+    --accent2: #ff6b9d;
+    --accent3: #00d4aa;
+    --pill-bg: rgba(124,111,255,0.12);
+    --pill-text: #a99fff;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── BACKGROUND ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 10% -10%, rgba(124,111,255,0.13) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 90% 110%, rgba(0,212,170,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 50% 50%, rgba(255,107,157,0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 64px 24px 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--pill-bg);
+    border: 1px solid rgba(124,111,255,0.25);
+    color: var(--pill-text);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  .header-badge::before { content: '✦'; font-size: 9px; }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #fff 0%, #c8c0ff 40%, #ff6b9d 75%, #ff9a5c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+  .subtitle {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+
+  /* ── SEARCH ── */
+  .search-wrap {
+    position: relative;
+    max-width: 520px;
+    margin: 0 auto 20px;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    pointer-events: none;
+    width: 16px; height: 16px;
+  }
+  #search {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 12px 18px 12px 44px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  #search:focus {
+    border-color: rgba(124,111,255,0.5);
+    box-shadow: 0 0 0 3px rgba(124,111,255,0.1);
+  }
+  #search::placeholder { color: var(--muted); }
+
+  /* ── FILTER TABS ── */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  .filter-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.18s;
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--border-hover); color: var(--text); }
+  .filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 0 0 16px rgba(124,111,255,0.35);
+  }
+
+  /* ── STATS BAR ── */
+  .stats {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .stats span strong { color: var(--text); font-weight: 500; }
+
+  /* ── GRID ── */
+  main {
+    position: relative;
+    z-index: 2;
+    padding: 28px 24px 64px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, transform 0.18s, box-shadow 0.2s, background 0.2s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.2s;
+    background: radial-gradient(ellipse at 0% 0%, rgba(124,111,255,0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+    background: var(--surface2);
+  }
+  .card:hover::before { opacity: 1; }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .logo-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .logo-wrap img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+  .logo-wrap .fallback {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    display: none;
+  }
+
+  .arrow-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--muted);
+    opacity: 0;
+    transform: translate(-4px, 4px);
+    transition: all 0.18s;
+    flex-shrink: 0;
+  }
+  .card:hover .arrow-icon { opacity: 1; transform: translate(0, 0); }
+
+  .card-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .card-desc {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    flex: 1;
+  }
+  .card-cat {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 100px;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  /* Category colors */
+  .cat-chatai    { background: rgba(124,111,255,0.15); color: #a99fff; }
+  .cat-writing   { background: rgba(255,107,157,0.15); color: #ff9ec5; }
+  .cat-coding    { background: rgba(0,212,170,0.15);   color: #00d4aa; }
+  .cat-research  { background: rgba(59,130,246,0.15);  color: #7eb5fa; }
+  .cat-design    { background: rgba(251,146,60,0.15);  color: #fca96a; }
+  .cat-math      { background: rgba(34,197,94,0.15);   color: #6ee09a; }
+  .cat-productivity { background: rgba(234,179,8,0.15); color: #fcd34d; }
+  .cat-language  { background: rgba(236,72,153,0.15);  color: #f07ec4; }
+  .cat-video     { background: rgba(239,68,68,0.15);   color: #f89090; }
+
+  /* ── NO RESULTS ── */
+  .no-results {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 60px 0;
+    color: var(--muted);
+    font-size: 15px;
+  }
+  .no-results span { font-size: 40px; display: block; margin-bottom: 12px; }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .card { animation: fadeUp 0.4s ease both; }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 32px; }
+    .grid { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 8px; }
+    main { padding: 20px 12px 48px; }
+    .stats { padding: 12px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-badge">Student Edition 2025</div>
+  <h1>100 AI Tools<br>for Students</h1>
+  <p class="subtitle">Click any tool to open its official platform instantly. Your ultimate AI learning toolkit.</p>
+
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="search" placeholder="Search tools, categories, or tasks..." oninput="filterAll()" autocomplete="off" />
+  </div>
+
+  <div class="filters" id="filters">
+    <button class="filter-btn active" onclick="setCategory('All')">✦ All (100)</button>
+    <button class="filter-btn" onclick="setCategory('Chat AI')">💬 Chat AI</button>
+    <button class="filter-btn" onclick="setCategory('Writing')">✍️ Writing</button>
+    <button class="filter-btn" onclick="setCategory('Coding')">💻 Coding</button>
+    <button class="filter-btn" onclick="setCategory('Research')">🔬 Research</button>
+    <button class="filter-btn" onclick="setCategory('Design')">🎨 Design</button>
+    <button class="filter-btn" onclick="setCategory('Math')">📐 Math</button>
+    <button class="filter-btn" onclick="setCategory('Productivity')">⚡ Productivity</button>
+    <button class="filter-btn" onclick="setCategory('Language')">🌍 Language</button>
+    <button class="filter-btn" onclick="setCategory('Video')">🎬 Video</button>
+  </div>
+</header>
+
+<div class="stats">
+  <span>Showing <strong id="count">100</strong> tools</span>
+  <span>Click any card to visit the official platform →</span>
+</div>
+
+<main>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>
+  Made for students · 100 AI tools · All links open official platforms
+</footer>
+
+<script>
+const tools = [
+  // ── CHAT AI ──
+  { name:"ChatGPT",        cat:"Chat AI",     desc:"The world's most popular AI. Ask anything, get essays, explanations and code.",              url:"https://chat.openai.com",              domain:"chat.openai.com" },
+  { name:"Claude",         cat:"Chat AI",     desc:"Anthropic's thoughtful AI for deep learning, analysis and long documents.",                  url:"https://claude.ai",                    domain:"claude.ai" },
+  { name:"Gemini",         cat:"Chat AI",     desc:"Google's multimodal AI. Understands text, images, and connects with Google apps.",           url:"https://gemini.google.com",            domain:"gemini.google.com" },
+  { name:"Microsoft Copilot", cat:"Chat AI",  desc:"AI assistant embedded in Windows, Edge, and Microsoft 365 suite.",                          url:"https://copilot.microsoft.com",        domain:"copilot.microsoft.com" },
+  { name:"Khanmigo",       cat:"Chat AI",     desc:"Khan Academy's Socratic AI tutor — guides you to answers without giving them away.",         url:"https://www.khanacademy.org/khan-labs",domain:"khanacademy.org" },
+  { name:"Meta AI",        cat:"Chat AI",     desc:"Meta's free AI assistant built into WhatsApp, Instagram, and Facebook.",                     url:"https://www.meta.ai",                  domain:"meta.ai" },
+  { name:"Grok",           cat:"Chat AI",     desc:"xAI's witty assistant with real-time X (Twitter) data access.",                             url:"https://grok.com",                     domain:"grok.com" },
+  { name:"Le Chat",        cat:"Chat AI",     desc:"Mistral's fast open-source AI chat — great for European privacy standards.",                 url:"https://chat.mistral.ai",              domain:"mistral.ai" },
+  { name:"You.com",        cat:"Chat AI",     desc:"AI search + chat hybrid that cites sources for every answer.",                              url:"https://you.com",                      domain:"you.com" },
+  { name:"Poe",            cat:"Chat AI",     desc:"Access ChatGPT, Claude, Gemini and 100+ AI bots in one single app.",                        url:"https://poe.com",                      domain:"poe.com" },
+  { name:"HuggingChat",    cat:"Chat AI",     desc:"Free open-source AI chat powered by Hugging Face community models.",                        url:"https://huggingface.co/chat",          domain:"huggingface.co" },
+  { name:"Tutor AI",       cat:"Chat AI",     desc:"Personalized AI tutor — picks any topic and teaches it step by step.",                      url:"https://www.tutorai.me",               domain:"tutorai.me" },
+
+  // ── WRITING ──
+  { name:"Grammarly",      cat:"Writing",     desc:"AI grammar, spelling, tone and clarity checker for all your writing.",                       url:"https://www.grammarly.com",            domain:"grammarly.com" },
+  { name:"QuillBot",       cat:"Writing",     desc:"Paraphrase, summarize, and grammar-check essays with powerful AI.",                         url:"https://quillbot.com",                 domain:"quillbot.com" },
+  { name:"Writesonic",     cat:"Writing",     desc:"AI content writer for essays, blogs, cover letters and social posts.",                       url:"https://writesonic.com",               domain:"writesonic.com" },
+  { name:"Jasper",         cat:"Writing",     desc:"Professional-grade AI writing assistant for long-form content.",                            url:"https://www.jasper.ai",                domain:"jasper.ai" },
+  { name:"Copy.ai",        cat:"Writing",     desc:"AI that generates emails, outlines, essays and blog drafts in seconds.",                    url:"https://www.copy.ai",                  domain:"copy.ai" },
+  { name:"Rytr",           cat:"Writing",     desc:"Affordable AI writing assistant for assignments, bios and creative pieces.",                 url:"https://rytr.me",                      domain:"rytr.me" },
+  { name:"Wordtune",       cat:"Writing",     desc:"Rewrites your sentences to sound clearer, shorter or more professional.",                   url:"https://www.wordtune.com",             domain:"wordtune.com" },
+  { name:"Hemingway Editor", cat:"Writing",   desc:"Highlights complex sentences & passive voice to make your writing bold.",                   url:"https://hemingwayapp.com",             domain:"hemingwayapp.com" },
+  { name:"Smodin",         cat:"Writing",     desc:"AI essay writer, rewriter and plagiarism remover for students.",                            url:"https://smodin.io",                    domain:"smodin.io" },
+  { name:"Jenni AI",       cat:"Writing",     desc:"Academic AI writing assistant with auto-citations and journal references.",                 url:"https://jenni.ai",                     domain:"jenni.ai" },
+  { name:"Sudowrite",      cat:"Writing",     desc:"Creative writing AI for stories, fiction and descriptive language.",                        url:"https://www.sudowrite.com",            domain:"sudowrite.com" },
+  { name:"Longshot AI",    cat:"Writing",     desc:"Fact-checked AI writer for research essays and blog articles.",                             url:"https://www.longshot.ai",              domain:"longshot.ai" },
+
+  // ── CODING ──
+  { name:"GitHub Copilot", cat:"Coding",      desc:"AI pair programmer inside VS Code — suggests code as you type.",                            url:"https://github.com/features/copilot",  domain:"github.com" },
+  { name:"Replit AI",      cat:"Coding",      desc:"Browser-based IDE with AI that writes, runs and debugs code for beginners.",                url:"https://replit.com",                   domain:"replit.com" },
+  { name:"Codeium",        cat:"Coding",      desc:"Free AI code autocomplete and chat for 70+ programming languages.",                         url:"https://codeium.com",                  domain:"codeium.com" },
+  { name:"Cursor",         cat:"Coding",      desc:"AI-first code editor that can write, refactor and explain entire codebases.",               url:"https://cursor.com",                   domain:"cursor.com" },
+  { name:"Tabnine",        cat:"Coding",      desc:"AI code completion for all major IDEs — learns your coding patterns.",                      url:"https://www.tabnine.com",              domain:"tabnine.com" },
+  { name:"Blackbox AI",    cat:"Coding",      desc:"AI that generates, explains and debugs code from natural language prompts.",                url:"https://www.blackbox.ai",              domain:"blackbox.ai" },
+  { name:"Phind",          cat:"Coding",      desc:"AI-powered developer search engine for coding questions and docs.",                         url:"https://www.phind.com",                domain:"phind.com" },
+  { name:"Bolt.new",       cat:"Coding",      desc:"Build full-stack web apps in browser using AI — no setup needed.",                         url:"https://bolt.new",                     domain:"bolt.new" },
+  { name:"v0 by Vercel",   cat:"Coding",      desc:"Generate React UI components from text descriptions instantly.",                           url:"https://v0.dev",                       domain:"v0.dev" },
+  { name:"Claude Code",    cat:"Coding",      desc:"Anthropic's agentic CLI coding tool for complex software projects.",                        url:"https://claude.ai/code",               domain:"claude.ai" },
+  { name:"Lovable",        cat:"Coding",      desc:"Describe an app in plain English and get a full working web app.",                          url:"https://lovable.dev",                  domain:"lovable.dev" },
+  { name:"CodeRabbit",     cat:"Coding",      desc:"AI code reviewer that gives detailed PR feedback and suggestions.",                         url:"https://www.coderabbit.ai",            domain:"coderabbit.ai" },
+
+  // ── RESEARCH ──
+  { name:"Perplexity",     cat:"Research",    desc:"AI search engine that gives cited, real-time answers to any question.",                     url:"https://www.perplexity.ai",            domain:"perplexity.ai" },
+  { name:"Elicit",         cat:"Research",    desc:"AI that searches academic literature and summarizes papers for you.",                       url:"https://elicit.com",                   domain:"elicit.com" },
+  { name:"Consensus",      cat:"Research",    desc:"Finds scientific paper consensus on any research question instantly.",                      url:"https://consensus.app",                domain:"consensus.app" },
+  { name:"SciSpace",       cat:"Research",    desc:"Chat with any research PDF and ask questions about its content.",                           url:"https://typeset.io",                   domain:"typeset.io" },
+  { name:"ResearchRabbit", cat:"Research",    desc:"Visual paper discovery tool — maps related research like a knowledge graph.",               url:"https://www.researchrabbit.ai",        domain:"researchrabbit.ai" },
+  { name:"Semantic Scholar",cat:"Research",   desc:"AI-powered academic search across millions of scientific papers.",                          url:"https://www.semanticscholar.org",      domain:"semanticscholar.org" },
+  { name:"Scholarcy",      cat:"Research",    desc:"Automatically summarizes academic papers into editable flashcard summaries.",               url:"https://www.scholarcy.com",            domain:"scholarcy.com" },
+  { name:"ChatPDF",        cat:"Research",    desc:"Upload any PDF and ask it questions — great for textbooks and papers.",                     url:"https://www.chatpdf.com",              domain:"chatpdf.com" },
+  { name:"Humata AI",      cat:"Research",    desc:"Chat with multiple uploaded documents and get sourced answers.",                           url:"https://www.humata.ai",                domain:"humata.ai" },
+  { name:"Explainpaper",   cat:"Research",    desc:"Highlights confusing jargon in papers and explains it in plain language.",                  url:"https://www.explainpaper.com",         domain:"explainpaper.com" },
+  { name:"Scite.ai",       cat:"Research",    desc:"Shows how scientific papers are cited, disputed or supported by others.",                   url:"https://scite.ai",                     domain:"scite.ai" },
+  { name:"Chegg",          cat:"Research",    desc:"Homework help, textbook solutions and AI study support for students.",                      url:"https://www.chegg.com",                domain:"chegg.com" },
+
+  // ── DESIGN ──
+  { name:"Canva AI",       cat:"Design",      desc:"Drag-and-drop design platform with AI Magic Studio for instant visuals.",                   url:"https://www.canva.com",                domain:"canva.com" },
+  { name:"Midjourney",     cat:"Design",      desc:"Create stunning AI artwork and illustrations from text prompts.",                           url:"https://www.midjourney.com",           domain:"midjourney.com" },
+  { name:"DALL-E 3",       cat:"Design",      desc:"OpenAI's image generator — creates accurate, detailed visuals from descriptions.",          url:"https://openai.com/dall-e-3",          domain:"openai.com" },
+  { name:"Adobe Firefly",  cat:"Design",      desc:"Adobe's AI image generator — safe for commercial and academic projects.",                   url:"https://firefly.adobe.com",            domain:"adobe.com" },
+  { name:"Ideogram",       cat:"Design",      desc:"AI image generator with perfect text rendering inside images.",                            url:"https://ideogram.ai",                  domain:"ideogram.ai" },
+  { name:"Gamma.app",      cat:"Design",      desc:"Create beautiful AI-generated presentations and decks in minutes.",                        url:"https://gamma.app",                    domain:"gamma.app" },
+  { name:"Tome",           cat:"Design",      desc:"AI-powered presentation builder for visual storytelling and pitches.",                      url:"https://tome.app",                     domain:"tome.app" },
+  { name:"Beautiful.ai",   cat:"Design",      desc:"Smart slides that auto-redesign themselves as you add content.",                           url:"https://www.beautiful.ai",             domain:"beautiful.ai" },
+  { name:"Napkin AI",      cat:"Design",      desc:"Instantly turns text ideas into visual diagrams, charts and infographics.",                 url:"https://www.napkin.ai",                domain:"napkin.ai" },
+  { name:"Remove.bg",      cat:"Design",      desc:"AI background remover — one click to get a clean PNG cutout.",                             url:"https://www.remove.bg",                domain:"remove.bg" },
+  { name:"Leonardo AI",    cat:"Design",      desc:"AI art generator with fine-tuned models for consistent creative projects.",                 url:"https://app.leonardo.ai",              domain:"leonardo.ai" },
+  { name:"Figma AI",       cat:"Design",      desc:"AI features inside Figma for generating UI layouts and design suggestions.",                url:"https://www.figma.com",                domain:"figma.com" },
+
+  // ── MATH ──
+  { name:"Wolfram Alpha",  cat:"Math",        desc:"Computes answers to complex math, physics, chemistry and stats questions.",                 url:"https://www.wolframalpha.com",         domain:"wolframalpha.com" },
+  { name:"Photomath",      cat:"Math",        desc:"Scan any math problem with your camera and get step-by-step solutions.",                   url:"https://photomath.com",                domain:"photomath.com" },
+  { name:"Mathway",        cat:"Math",        desc:"Solves algebra, calculus, trigonometry and statistics problems with steps.",                url:"https://www.mathway.com",              domain:"mathway.com" },
+  { name:"Symbolab",       cat:"Math",        desc:"Step-by-step solver for advanced math — integrals, derivatives, limits.",                  url:"https://www.symbolab.com",             domain:"symbolab.com" },
+  { name:"Desmos",         cat:"Math",        desc:"Interactive AI-enhanced graphing calculator for visual math learning.",                    url:"https://www.desmos.com",               domain:"desmos.com" },
+  { name:"Socratic",       cat:"Math",        desc:"Google's app to get visual explanations to any homework question.",                        url:"https://socratic.org",                 domain:"socratic.org" },
+  { name:"GeoGebra",       cat:"Math",        desc:"Interactive math platform for geometry, algebra, calculus and stats.",                     url:"https://www.geogebra.org",             domain:"geogebra.org" },
+  { name:"Numerade",       cat:"Math",        desc:"AI STEM tutor with 1M+ video solutions for textbook problems.",                            url:"https://www.numerade.com",             domain:"numerade.com" },
+  { name:"Brilliant",      cat:"Math",        desc:"Interactive AI courses in math, logic, CS and science for deep learning.",                 url:"https://brilliant.org",                domain:"brilliant.org" },
+  { name:"Khan Academy",   cat:"Math",        desc:"Free AI-powered courses in math, science and computing for all levels.",                   url:"https://www.khanacademy.org",          domain:"khanacademy.org" },
+
+  // ── PRODUCTIVITY ──
+  { name:"Notion AI",      cat:"Productivity",desc:"AI built into Notion — summarize notes, write drafts and generate tables.",                url:"https://www.notion.so",                domain:"notion.so" },
+  { name:"Otter.ai",       cat:"Productivity",desc:"Real-time AI transcription for lectures, meetings and interviews.",                        url:"https://otter.ai",                     domain:"otter.ai" },
+  { name:"Quizlet AI",     cat:"Productivity",desc:"AI generates flashcard sets, practice tests and study guides from your notes.",            url:"https://quizlet.com",                  domain:"quizlet.com" },
+  { name:"Anki",           cat:"Productivity",desc:"Spaced repetition flashcard app enhanced with AI plugins for memory.",                     url:"https://apps.ankiweb.net",             domain:"ankiweb.net" },
+  { name:"Speechify",      cat:"Productivity",desc:"AI reads any PDF, webpage or textbook aloud at 4.5x speed.",                              url:"https://speechify.com",                domain:"speechify.com" },
+  { name:"Knowt",          cat:"Productivity",desc:"AI that converts your notes and slides into flashcards and practice tests.",               url:"https://knowt.com",                    domain:"knowt.com" },
+  { name:"Wisdolia",       cat:"Productivity",desc:"Upload any PDF and AI instantly generates flashcards for revision.",                       url:"https://www.wisdolia.com",             domain:"wisdolia.com" },
+  { name:"Mindgrasp",      cat:"Productivity",desc:"AI that summarizes lectures, PDFs, YouTube videos and audio files.",                       url:"https://mindgrasp.ai",                 domain:"mindgrasp.ai" },
+  { name:"Taskade",        cat:"Productivity",desc:"AI task lists, mind maps and project planning for study groups.",                          url:"https://www.taskade.com",              domain:"taskade.com" },
+  { name:"MagicSchool AI", cat:"Productivity",desc:"AI tools designed specifically to help students study and learn faster.",                  url:"https://www.magicschool.ai",           domain:"magicschool.ai" },
+  { name:"Motion",         cat:"Productivity",desc:"AI that automatically schedules your tasks, assignments and study sessions.",              url:"https://www.usemotion.com",            domain:"usemotion.com" },
+  { name:"Mem.ai",         cat:"Productivity",desc:"AI-powered note-taking app that auto-organizes your ideas and research.",                  url:"https://mem.ai",                       domain:"mem.ai" },
+
+  // ── LANGUAGE ──
+  { name:"Duolingo",       cat:"Language",    desc:"AI-powered gamified language learning for 40+ languages.",                                url:"https://www.duolingo.com",             domain:"duolingo.com" },
+  { name:"DeepL",          cat:"Language",    desc:"World's most accurate AI translator — supports 31 languages.",                            url:"https://www.deepl.com",                domain:"deepl.com" },
+  { name:"ELSA Speak",     cat:"Language",    desc:"AI English pronunciation coach — detects and corrects accent errors.",                    url:"https://elsaspeak.com",                domain:"elsaspeak.com" },
+  { name:"Speak App",      cat:"Language",    desc:"AI language tutor for real conversation practice in any language.",                       url:"https://www.speak.com",                domain:"speak.com" },
+  { name:"Babbel AI",      cat:"Language",    desc:"AI-personalized language lesson plans for working professionals.",                        url:"https://www.babbel.com",               domain:"babbel.com" },
+  { name:"Pimsleur",       cat:"Language",    desc:"Audio-based AI language learning through spaced listening and speaking.",                  url:"https://www.pimsleur.com",             domain:"pimsleur.com" },
+  { name:"Rosetta Stone",  cat:"Language",    desc:"Immersive AI language learning with speech recognition technology.",                      url:"https://www.rosettastone.com",         domain:"rosettastone.com" },
+  { name:"iTranslate",     cat:"Language",    desc:"AI translation and dictionary app for 100+ languages offline too.",                       url:"https://itranslate.com",               domain:"itranslate.com" },
+
+  // ── VIDEO & AUDIO ──
+  { name:"Runway ML",      cat:"Video",       desc:"AI video generation and editing — create video clips from text.",                         url:"https://runwayml.com",                 domain:"runwayml.com" },
+  { name:"Synthesia",      cat:"Video",       desc:"Create AI avatar videos from scripts — no camera or actor needed.",                       url:"https://www.synthesia.io",             domain:"synthesia.io" },
+  { name:"Pictory",        cat:"Video",       desc:"Turn text, blogs and notes into shareable short videos automatically.",                   url:"https://pictory.ai",                   domain:"pictory.ai" },
+  { name:"InVideo AI",     cat:"Video",       desc:"AI video maker for student presentations, reels and explainer videos.",                   url:"https://invideo.io",                   domain:"invideo.io" },
+  { name:"ElevenLabs",     cat:"Video",       desc:"Hyper-realistic AI text-to-speech in 29 languages for any project.",                     url:"https://elevenlabs.io",                domain:"elevenlabs.io" },
+  { name:"Descript",       cat:"Video",       desc:"Edit video and podcast by editing the transcript — like a Word doc.",                    url:"https://www.descript.com",             domain:"descript.com" },
+  { name:"Suno AI",        cat:"Video",       desc:"Create full original songs from a text description in 30 seconds.",                      url:"https://suno.com",                     domain:"suno.com" },
+  { name:"Murf AI",        cat:"Video",       desc:"Studio-quality AI voiceovers for e-learning and presentations.",                         url:"https://murf.ai",                      domain:"murf.ai" },
+  { name:"HeyGen",         cat:"Video",       desc:"Create AI avatar spokesperson videos for academic projects.",                            url:"https://www.heygen.com",               domain:"heygen.com" },
+  { name:"Udio",           cat:"Video",       desc:"AI music generator — create royalty-free music for your projects.",                      url:"https://www.udio.com",                 domain:"udio.com" },
+];
+
+function getCatClass(cat) {
+  const map = {
+    "Chat AI":"chatai","Writing":"writing","Coding":"coding",
+    "Research":"research","Design":"design","Math":"math",
+    "Productivity":"productivity","Language":"language","Video":"video"
+  };
+  return "cat-" + (map[cat] || "chatai");
+}
+
+function buildCard(t, i) {
+  const catClass = getCatClass(t.cat);
+  const delay = (i % 20) * 30;
+  return `<a class="card" href="${t.url}" target="_blank" rel="noopener noreferrer" style="animation-delay:${delay}ms">
+    <div class="card-top">
+      <div class="logo-wrap" id="lw-${i}">
+        <img
+          src="https://www.google.com/s2/favicons?domain=${t.domain}&sz=64"
+          alt="${t.name} logo"
+          onload="this.style.display='block'; this.parentElement.querySelector('.fallback').style.display='none';"
+          onerror="this.style.display='none'; this.parentElement.querySelector('.fallback').style.display='flex';"
+          style="display:block;"
+        />
+        <span class="fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;">${t.name.slice(0,2).toUpperCase()}</span>
+      </div>
+      <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M7 17L17 7M17 7H7M17 7v10"/>
+      </svg>
+    </div>
+    <div class="card-name">${t.name}</div>
+    <div class="card-desc">${t.desc}</div>
+    <span class="card-cat ${catClass}">${t.cat}</span>
+  </a>`;
+}
+
+let activecat = "All";
+let searchq = "";
+
+function render() {
+  const q = searchq.toLowerCase();
+  const filtered = tools.filter((t, i) => {
+    const catOk = activecat === "All" || t.cat === activecat;
+    const sOk = !q || t.name.toLowerCase().includes(q) || t.cat.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q);
+    return catOk && sOk;
+  });
+  document.getElementById("count").textContent = filtered.length;
+  const html = filtered.length
+    ? filtered.map((t, i) => buildCard(t, i)).join("")
+    : `<div class="no-results"><span>🔍</span>No tools found for "<strong>${searchq}</strong>"</div>`;
+  document.getElementById("grid").innerHTML = html;
+}
+
+function setCategory(cat) {
+  activecat = cat;
+  document.querySelectorAll(".filter-btn").forEach(b => {
+    b.classList.toggle("active", b.textContent.includes(cat === "All" ? "All" : cat));
+  });
+  render();
+}
+
+function filterAll() {
+  searchq = document.getElementById("search").value;
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
